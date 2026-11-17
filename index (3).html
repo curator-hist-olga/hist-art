@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Романтизм чи класицизм: впізнай швидко!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#E8302A;
+  --bg-mark:rgba(255,255,255,.10);
+  --panel:#FFFFFF;
+  --ink:#111111;
+  --muted:#5B5150;
+  --red:#E52521;
+  --pink:#FDE5E4;
+  --pink-line:#F4B7B4;
+  --on-red:#FFFFFF;
+  --good:#17894F;
+  --good-soft:#DFF3E7;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#7E1412;--bg-mark:rgba(255,255,255,.06);--panel:#1E1718;--ink:#F6EFEF;--muted:#BCA9A8;
+    --red:#FF4A44;--pink:#3A2021;--pink-line:#6B3533;--on-red:#FFFFFF;--good:#4FCB8A;--good-soft:#173527;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#7E1412;--bg-mark:rgba(255,255,255,.06);--panel:#1E1718;--ink:#F6EFEF;--muted:#BCA9A8;
+  --red:#FF4A44;--pink:#3A2021;--pink-line:#6B3533;--on-red:#FFFFFF;--good:#4FCB8A;--good-soft:#173527;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%;background:var(--bg)}
+body{margin:0;min-height:100%;color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.4;
+  background-color:var(--bg);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' fill='none' stroke='white' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'%3E%3Cg opacity='.13'%3E%3Cpath d='M14 40 45 22l31 18Z'/%3E%3Cpath d='M16 46h58M24 52v28M38 52v28M52 52v28M66 52v28M12 86h66'/%3E%3Cpath d='M160 100c-22 2-36 20-38 44l7-5c16-5 27-18 31-39Z'/%3E%3Cpath d='M122 144l-6 10'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:180px 180px;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:720px;margin:0 auto;padding:22px 14px 34px}
+.hidden{display:none!important}
+.H{font-family:Montserrat,"Arial Black",system-ui,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;margin:0;line-height:1.05}
+
+/* header like slides */
+.top{text-align:center;color:var(--on-red);margin-bottom:16px}
+.top .H{font-size:clamp(28px,7.4vw,50px)}
+.pill{display:inline-block;background:var(--panel);color:var(--red);font-family:Montserrat,system-ui,sans-serif;font-weight:800;border-radius:999px;padding:8px 22px;margin-top:12px;font-size:clamp(14px,3.6vw,18px)}
+.panel{background:var(--panel);border-radius:24px;padding:20px 18px;margin-bottom:14px}
+.panel > .H{font-size:clamp(22px,5.6vw,32px);text-align:center;margin-bottom:14px}
+.bar{background:var(--red);color:var(--on-red);border-radius:14px;padding:12px 14px;text-align:center;font-family:Montserrat,system-ui,sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(15px,4vw,21px);margin-bottom:10px}
+.item{display:flex;gap:12px;align-items:flex-start;background:var(--pink);border:1.5px solid var(--pink-line);border-radius:12px;padding:10px 14px;margin-bottom:8px}
+.item::before{content:"❯";color:var(--red);font-weight:900;flex:none}
+.item b{display:block}
+.item span{color:var(--muted);font-size:15px}
+.lifehack{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px}
+.bulb{width:46px;height:46px;border-radius:50%;background:var(--pink);display:grid;place-items:center;font-size:24px}
+.lifehack .H{font-size:clamp(22px,5.6vw,32px)}
+.note{border:1.5px solid var(--pink-line);border-radius:12px;padding:10px 14px;text-align:center}
+
+.cta{display:block;width:100%;border:0;border-radius:18px;padding:18px;background:var(--panel);color:var(--red);
+  font-family:Montserrat,system-ui,sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(18px,4.8vw,24px);box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.cta:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.best{color:var(--on-red);text-align:center;font-weight:700;margin-top:12px}
+
+/* hud */
+.hud{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--panel);border-radius:999px;padding:8px 10px 8px 18px;margin-bottom:10px}
+.hud .stats{display:flex;align-items:center;gap:12px}
+.score{font-family:Montserrat,system-ui,sans-serif;font-weight:900;font-size:20px;font-variant-numeric:tabular-nums;background:var(--red);color:var(--on-red);border-radius:999px;padding:4px 14px}
+.combo{font-family:Montserrat,system-ui,sans-serif;font-weight:900;color:var(--red);min-width:2.2em;text-align:right}
+.lives{display:flex;gap:2px}
+.lives svg{width:20px;height:20px}
+.roundnum{font-weight:700;color:var(--muted);font-size:14px}
+.progress{height:8px;background:rgba(255,255,255,.3);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.progress i{display:block;height:100%;width:0;background:var(--panel);transition:width .3s}
+
+/* arena */
+.arena{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px;min-height:400px;touch-action:pan-y}
+.zone{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;background:var(--pink);border:1.5px solid var(--pink-line);border-radius:16px;color:var(--red);transition:background .15s}
+.zone svg{width:40px;height:40px}
+.zone .lbl{background:var(--red);color:var(--on-red);border-radius:10px;padding:6px 10px;font-family:Montserrat,system-ui,sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(12px,3.3vw,16px)}
+.zone .f{font-size:13px;color:var(--muted);text-align:center;font-weight:600}
+.zone.hot{background:var(--pink-line)}
+.zone.flash-good{animation:flash .5s}
+@keyframes flash{40%{background:var(--good-soft);border-color:var(--good)}}
+.card{position:absolute;left:50%;top:58%;width:min(84%,380px);transform:translate(-50%,-50%);background:var(--panel);color:var(--ink);
+  border:2.5px solid var(--red);border-radius:18px;padding:18px 18px 14px;box-shadow:0 14px 30px rgba(0,0,0,.18);text-align:center;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none}
+.card:active{cursor:grabbing}
+.card .kind{display:inline-block;background:var(--pink);color:var(--red);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700;margin-bottom:10px}
+.card .text{font-family:Montserrat,system-ui,sans-serif;font-weight:800;font-size:clamp(17px,4.4vw,22px);line-height:1.2}
+.card .sub{color:var(--muted);font-size:15px;margin-top:6px}
+.timer{height:6px;border-radius:6px;background:var(--pink);margin-top:14px;overflow:hidden}
+.timer i{display:block;height:100%;width:100%;background:var(--red);transform-origin:left}
+.card.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translate(calc(-50% - 10px),-50%)}40%,80%{transform:translate(calc(-50% + 10px),-50%)}}
+.choose{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.choose button{border:0;background:var(--panel);color:var(--red);border-radius:16px;padding:14px 8px;font-family:Montserrat,system-ui,sans-serif;font-weight:900;text-transform:uppercase;font-size:15px;box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.choose button:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.choose kbd{display:block;font-family:Inter,system-ui,sans-serif;font-weight:600;text-transform:none;font-size:12px;color:var(--muted);margin-top:2px}
+.hint{color:var(--on-red);font-weight:600;font-size:14px;text-align:center;margin:12px 0 0}
+
+/* quiz */
+.qtext{font-family:Montserrat,system-ui,sans-serif;font-weight:800;font-size:clamp(18px,4.8vw,24px);line-height:1.2;text-align:center;margin:0 0 16px}
+.opts{display:grid;gap:8px}
+.opts button{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--pink);border:1.5px solid var(--pink-line);border-radius:12px;padding:13px 14px;font-weight:700;font-size:17px;color:var(--ink)}
+.opts button .n{color:var(--red);font-weight:900}
+.opts button.ok{background:var(--good-soft);border-color:var(--good)}
+.opts button.ok .n{color:var(--good)}
+.opts button.bad{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.opts button.bad .n{color:var(--on-red)}
+.opts button:disabled{cursor:default}
+
+/* toast & pop */
+.toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(92vw,520px);
+  background:var(--panel);color:var(--ink);border:2.5px solid var(--red);border-radius:16px;padding:12px 16px;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:20;font-size:16px}
+.toast b{color:var(--red)}
+.pop{position:fixed;pointer-events:none;font-family:Montserrat,system-ui,sans-serif;font-weight:900;color:var(--on-red);background:var(--ink);border-radius:999px;padding:2px 12px;font-size:20px;z-index:30;animation:pop .8s forwards}
+@keyframes pop{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-50px)}}
+
+/* end */
+.stars{font-size:40px;letter-spacing:6px;color:var(--red);text-align:center}
+.stars .off{color:var(--pink-line)}
+.big{font-family:Montserrat,system-ui,sans-serif;font-weight:900;font-size:clamp(48px,14vw,80px);line-height:1;text-align:center;margin:6px 0 10px}
+.center{text-align:center;color:var(--muted);margin:0 0 4px}
+.review{margin:16px 0 0;padding:0;list-style:none}
+.review li{display:flex;gap:12px;background:var(--pink);border:1.5px solid var(--pink-line);border-radius:12px;padding:10px 14px;margin-bottom:8px;flex-direction:column}
+.review li b{display:block}
+.review li span{color:var(--muted);font-size:15px}
+.review h3{font-family:Montserrat,system-ui,sans-serif;font-weight:900;text-transform:uppercase;font-size:20px;margin:0}
+.review li.h{background:none;border:0;padding:0}
+@media (hover:none) and (pointer:coarse){.choose kbd,.kbhint{display:none}}
+@media (max-width:360px){.wrap{padding:16px 10px 28px}.card{width:90%;padding:14px 12px 12px}.zone .f{display:none}.arena{min-height:360px}.hud{padding-left:12px}}
+@media (min-width:600px) and (max-height:760px){.top{margin-bottom:10px}.top .H{font-size:38px}.arena{min-height:330px}}
+@media (min-width:1000px){.wrap{padding-top:32px}}
+@media (min-width:600px) and (min-height:900px){.arena{min-height:56vh}.wrap{padding-top:40px}.card{width:min(70%,440px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section id="start">
+    <header class="top">
+      <h1 class="H">Романтизм чи класицизм: впізнай швидко!</h1>
+      <div class="pill">кінець XVIII – 1-ша пол. XIX ст.</div>
+    </header>
+    <div class="panel">
+      <h2 class="H">Як грати:</h2>
+      <div class="bar">Класицизм ← картка → романтизм</div>
+      <div class="item"><div><b>Раунд 1. Впізнай ознаку</b><span>Колони чи козаччина? Відправ картку в потрібний стиль.</span></div></div>
+      <div class="item"><div><b>Раунд 2. Впізнай твір</b><span>Приклади з програми НМТ: «Кобзар», Червоний корпус, «Софіївка»…</span></div></div>
+      <div class="item"><div><b>Раунд 3. Хто автор?</b><span>Камерон, Беретті, Мартос, Тропінін, Штейнберг.</span></div></div>
+      <div class="item"><div><b>Швидкість = бали</b><span>Серія правильних відповідей множить рахунок до ×4. Маєш 3 життя.</span></div></div>
+    </div>
+    <button class="cta" id="startBtn">Почати гру</button>
+    <div class="best" id="bestLine"></div>
+  </section>
+
+  <section id="game" class="hidden">
+    <header class="top">
+      <h1 class="H" id="roundName"></h1>
+    </header>
+    <div class="hud">
+      <div class="roundnum" id="roundNum"></div>
+      <div class="stats">
+        <div class="lives" id="lives" aria-label="Життя"></div>
+        <div class="combo" id="combo"></div>
+        <div class="score" id="score" aria-live="polite">0</div>
+      </div>
+    </div>
+    <div class="progress"><i id="prog"></i></div>
+
+    <div id="sortView">
+      <div class="panel" style="padding:12px">
+        <div class="arena" id="arena">
+          <div class="zone" id="zoneC">
+            <div class="lbl">Класицизм</div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"><path d="M6 22 32 8l26 14Z"/><path d="M8 26h48M12 30v22M22 30v22M32 30v22M42 30v22M52 30v22M6 56h52"/></svg>
+            <div class="f">колони + ▲</div>
+          </div>
+          <div class="zone" id="zoneR">
+            <div class="lbl">Романтизм</div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 54s-18-11-22-22c-3-8 2-16 10-16 5 0 9 3 12 7 3-4 7-7 12-7 8 0 13 8 10 16-4 11-22 22-22 22Z"/></svg>
+            <div class="f">почуття + народ</div>
+          </div>
+          <div class="card" id="card" tabindex="-1">
+            <div class="kind" id="cardKind"></div>
+            <div class="text" id="cardText"></div>
+            <div class="sub" id="cardSub"></div>
+            <div class="timer"><i id="timerBar"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="choose">
+        <button id="btnC">Класицизм<kbd>← стрілка</kbd></button>
+        <button id="btnR">Романтизм<kbd>стрілка →</kbd></button>
+      </div>
+      <p class="hint">Перетягни картку вбік або натисни кнопку</p>
+    </div>
+
+    <div id="quizView" class="hidden">
+      <div class="panel">
+        <div class="bar" id="quizKind"></div>
+        <p class="qtext" id="quizQ"></p>
+        <div class="opts" id="opts"></div>
+        <div class="timer"><i id="quizTimer"></i></div>
+      </div>
+      <p class="hint kbhint">Можна натискати клавіші 1–4</p>
+    </div>
+  </section>
+
+  <section id="inter" class="hidden">
+    <header class="top"><h1 class="H" id="interTitle"></h1></header>
+    <div class="panel">
+      <div class="lifehack"><div class="bulb" aria-hidden="true">💡</div><h2 class="H">Запам’ятовуємо:</h2></div>
+      <div class="item"><div id="interText"></div></div>
+    </div>
+    <button class="cta" id="interBtn">Далі</button>
+  </section>
+
+  <section id="end" class="hidden">
+    <header class="top"><h1 class="H" id="endTitle"></h1></header>
+    <div class="panel">
+      <div class="stars" id="stars"></div>
+      <div class="big" id="endScore"></div>
+      <p class="center" id="endText"></p>
+      <ul class="review" id="review"></ul>
+    </div>
+    <button class="cta" id="againBtn">Зіграти ще раз</button>
+  </section>
+</div>
+
+<div class="toast hidden" id="toast" role="status"></div>
+
+<script>
+const FEATURES = [
+  {t:"Сильні емоції, мрії, драматичні сюжети", a:"R", why:"Романтизм: почуття важливіші за розум."},
+  {t:"Колони й портик, як у Давній Греції та Римі", a:"C", why:"Класицизм наслідує античний храм."},
+  {t:"Інтерес до фольклору, пісень і звичаїв народу", a:"R", why:"Романтизм = почуття + народ."},
+  {t:"Трикутний фронтон над входом", a:"C", why:"Фронтон — частина «грецького храму» на фасаді."},
+  {t:"Героїчне минуле: козаччина, Гетьманщина", a:"R", why:"Романтики оспівували козацьку старовину."},
+  {t:"Сувора симетрія: ліва частина дорівнює правій", a:"C", why:"Класицизм тримається порядку й симетрії."},
+  {t:"Незвичайний, часто трагічний герой", a:"R", why:"Трагічний герой — типовий для романтизму."},
+  {t:"Спокійні прямі лінії й мало декору", a:"C", why:"Класицизм стриманий і врівноважений."},
+  {t:"У живописі: народні типи, яскраві контрасти", a:"R", why:"Романтичний живопис показує народні типи."},
+  {t:"Часто купол над будівлею", a:"C", why:"Класицистичні споруди часто мають купол."},
+  {t:"Почуття > розум", a:"R", why:"Це головна формула романтизму."},
+  {t:"Будівля схожа на античний храм", a:"C", why:"Бачиш «грецький храм» — це класицизм."}
+];
+const WORKS = [
+  {t:"«Русалка Дністровая»", s:"1837, «Руська трійця»", a:"R", why:"Альманах «Руської трійці» (1837) — романтизм: інтерес до народу й фольклору."},
+  {t:"«Кобзар»", s:"1840, Т. Шевченко", a:"R", why:"«Кобзар» Т. Шевченка (1840) — приклад романтизму з програми НМТ."},
+  {t:"«Катерина» (картина)", s:"1842, Т. Шевченко", a:"R", why:"«Катерина» Т. Шевченка (1842): трагічна героїня, народний тип — романтизм."},
+  {t:"«Дівчина з Поділля»", s:"В. Тропінін", a:"R", why:"«Дівчина з Поділля» В. Тропініна: народний тип у живописі — романтизм."},
+  {t:"«Садиба Тарновського в Качанівці»", s:"1837, В. Штейнберг", a:"R", why:"«Садиба Тарновського в Качанівці» В. Штейнберга (1837) — романтизм."},
+  {t:"Палац Розумовського", s:"Батурин, арх. Ч. Камерон", a:"C", why:"Палац Розумовського (Батурин, арх. Ч. Камерон): колони, портик, фронтон — класицизм."},
+  {t:"Червоний корпус університету", s:"Київ, арх. В. Беретті", a:"C", why:"Червоний корпус (Київ, арх. В. Беретті): симетрія й колони — класицизм."},
+  {t:"Пам’ятник Рішельє", s:"Одеса, ск. І. Мартос", a:"C", why:"Пам’ятник Рішельє (Одеса, ск. І. Мартос) — приклад класицизму з програми НМТ."},
+  {t:"Парк «Софіївка»", s:"Умань, ландшафтний парк", a:"C", why:"Парк «Софіївка» (Умань) — ландшафтний парк доби класицизму."}
+];
+const QUIZ = [
+  {q:"Хто автор «Кобзаря» (1840)?", o:["Т. Шевченко","«Руська трійця»","В. Тропінін","І. Мартос"], why:"«Кобзар» 1840 року — Тарас Шевченко."},
+  {q:"Хто видав альманах «Русалка Дністровая» (1837)?", o:["«Руська трійця»","Т. Шевченко","В. Штейнберг","Ч. Камерон"], why:"«Русалку Дністровую» видала «Руська трійця»."},
+  {q:"Хто написав картину «Катерина» (1842)?", o:["Т. Шевченко","В. Тропінін","В. Штейнберг","В. Беретті"], why:"«Катерина» — і поема, і картина Шевченка."},
+  {q:"Автор картини «Дівчина з Поділля»?", o:["В. Тропінін","Т. Шевченко","В. Штейнберг","І. Мартос"], why:"«Дівчина з Поділля» — Василь Тропінін."},
+  {q:"Хто намалював «Садибу Тарновського в Качанівці» (1837)?", o:["В. Штейнберг","В. Тропінін","Т. Шевченко","Ч. Камерон"], why:"Автор — Василь Штейнберг."},
+  {q:"Архітектор палацу Розумовського в Батурині?", o:["Ч. Камерон","В. Беретті","І. Мартос","В. Штейнберг"], why:"Палац у Батурині — архітектор Чарльз Камерон."},
+  {q:"Архітектор Червоного корпусу Київського університету?", o:["В. Беретті","Ч. Камерон","І. Мартос","В. Тропінін"], why:"Червоний корпус — Вікентій Беретті."},
+  {q:"Скульптор пам’ятника Рішельє в Одесі?", o:["І. Мартос","В. Беретті","Ч. Камерон","Т. Шевченко"], why:"Пам’ятник Рішельє — Іван Мартос."},
+  {q:"У якому місті парк «Софіївка»?", o:["Умань","Батурин","Одеса","Качанівка"], why:"«Софіївка» — ландшафтний парк в Умані."},
+  {q:"Де стоїть палац Розумовського?", o:["Батурин","Умань","Київ","Одеса"], why:"Палац Розумовського — у Батурині."},
+  {q:"Романтизм = почуття + …", o:["народ","колони","симетрія","розум"], why:"Суперлайфхак: романтизм = почуття + народ."},
+  {q:"Класицизм = колони + …", o:["трикутний фронтон","фольклор","трагічний герой","яскраві контрасти"], why:"Суперлайфхак: класицизм = колони + фронтон."}
+];
+
+const ROUNDS = [
+  {name:"Впізнай ознаку", type:"sort", items:FEATURES, time:7000, kind:"Ознака стилю"},
+  {name:"Впізнай твір", type:"sort", items:WORKS, time:7000, kind:"Приклад з програми НМТ"},
+  {name:"Хто автор?", type:"quiz", items:QUIZ, count:8, time:10000}
+];
+const STYLE = {C:"Класицизм", R:"Романтизм"};
+
+const $ = id => document.getElementById(id);
+const shuffle = a => { a=[...a]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+
+let st = null;
+let timerRAF = null, timerStart = 0, timerDur = 0, locked = false;
+
+function getBest(){ try{ return parseInt(localStorage.getItem("kp-best")||"0",10)||0; }catch(e){ return 0; } }
+function setBest(v){ try{ localStorage.setItem("kp-best", String(v)); }catch(e){} }
+function showBest(){ const b=getBest(); $("bestLine").textContent = b ? `Твій рекорд: ${b.toLocaleString("uk-UA")} балів` : ""; }
+showBest();
+
+function show(id){ ["start","game","inter","end"].forEach(s=>$(s).classList.toggle("hidden", s!==id)); window.scrollTo(0,0); }
+
+function newGame(){
+  st = {score:0, streak:0, lives:3, round:0, idx:0, items:[], mistakes:[], correct:0, total:0};
+  startRound();
+}
+function startRound(){
+  const r = ROUNDS[st.round];
+  st.idx = 0;
+  st.items = r.type==="quiz" ? shuffle(r.items).slice(0,r.count) : shuffle(r.items);
+  show("game");
+  $("roundName").textContent = /[?!]$/.test(r.name) ? r.name : r.name + "!"; $("roundNum").textContent = `раунд ${st.round+1} з ${ROUNDS.length}`;
+  $("sortView").classList.toggle("hidden", r.type!=="sort");
+  $("quizView").classList.toggle("hidden", r.type!=="quiz");
+  renderHud();
+  nextItem();
+}
+function renderHud(){
+  $("score").textContent = st.score.toLocaleString("uk-UA");
+  const m = mult();
+  $("combo").textContent = m>1 ? `×${m}` : "";
+  const heart = on => `<svg viewBox="0 0 24 24" fill="${on?'var(--red)':'none'}" stroke="${on?'var(--red)':'var(--pink-line)'}" stroke-width="2"><path d="M12 21s-7.5-4.6-9.5-9.3C1 8 3.3 4.5 6.8 4.5c2.1 0 3.6 1.2 5.2 3 1.6-1.8 3.1-3 5.2-3 3.5 0 5.8 3.5 4.3 7.2C19.5 16.4 12 21 12 21Z"/></svg>`;
+  $("lives").innerHTML = [0,1,2].map(i=>heart(i<st.lives)).join("");
+  const r = ROUNDS[st.round];
+  $("prog").style.width = (st.items.length ? (st.idx/st.items.length)*100 : 0) + "%";
+}
+function mult(){ return Math.min(4, 1 + Math.floor(st.streak/3)); }
+
+function nextItem(){
+  locked = false;
+  const r = ROUNDS[st.round];
+  renderHud();
+  if(st.idx >= st.items.length){ endRound(); return; }
+  const it = st.items[st.idx];
+  if(r.type==="sort"){
+    const card = $("card");
+    card.style.transition = "none";
+    card.style.transform = "translate(-50%,-50%) scale(.9)";
+    card.style.opacity = "0";
+    $("cardKind").textContent = r.kind;
+    $("cardText").textContent = it.t;
+    $("cardSub").textContent = it.s || "";
+    $("cardSub").classList.toggle("hidden", !it.s);
+    requestAnimationFrame(()=>{ requestAnimationFrame(()=>{
+      card.style.transition = "transform .25s ease, opacity .25s ease";
+      card.style.transform = "translate(-50%,-50%)";
+      card.style.opacity = "1";
+    });});
+    startTimer(r.time, $("timerBar"));
+  } else {
+    $("quizKind").textContent = `Питання ${st.idx+1} з ${st.items.length}`;
+    $("quizQ").textContent = it.q;
+    const correct = it.o[0];
+    const opts = shuffle(it.o);
+    it._correct = correct;
+    $("opts").innerHTML = "";
+    opts.forEach((o,i)=>{
+      const b = document.createElement("button");
+      b.innerHTML = `<span class="n">❯</span><span></span>`;
+      b.lastChild.textContent = o;
+      b.dataset.v = o;
+      b.addEventListener("click", ()=>answerQuiz(b));
+      $("opts").appendChild(b);
+    });
+    startTimer(r.time, $("quizTimer"));
+  }
+}
+
+function startTimer(dur, bar){
+  cancelAnimationFrame(timerRAF);
+  timerStart = performance.now(); timerDur = dur;
+  const tick = now => {
+    const p = Math.min(1,(now-timerStart)/dur);
+    bar.style.transform = `scaleX(${1-p})`;
+    bar.style.background = p>0.7 ? "var(--ink)" : "var(--red)";
+    if(p>=1){ if(!locked) timeout(); return; }
+    timerRAF = requestAnimationFrame(tick);
+  };
+  timerRAF = requestAnimationFrame(tick);
+}
+function remainingFrac(){ return Math.max(0, 1-(performance.now()-timerStart)/timerDur); }
+
+function award(x,y){
+  const bonus = Math.round(100*remainingFrac());
+  st.streak++;
+  const pts = (100+bonus)*mult();
+  st.score += pts; st.correct++; st.total++;
+  const p = document.createElement("div");
+  p.className="pop"; p.textContent = `+${pts}`;
+  p.style.left = x+"px"; p.style.top = y+"px";
+  document.body.appendChild(p); setTimeout(()=>p.remove(),800);
+}
+function miss(it, label, why){
+  st.streak = 0; st.lives--; st.total++;
+  st.mistakes.push({t:label, why});
+  toast(`<b>${label}</b><br>${why}`);
+}
+
+/* ---- sorting ---- */
+function answerSort(side){
+  if(locked) return;
+  const r = ROUNDS[st.round];
+  if(r.type!=="sort") return;
+  locked = true; cancelAnimationFrame(timerRAF);
+  const it = st.items[st.idx];
+  const card = $("card");
+  const rect = card.getBoundingClientRect();
+  if(side===it.a){
+    award(rect.left+rect.width/2, rect.top);
+    const zone = side==="C" ? $("zoneC") : $("zoneR");
+    zone.classList.remove("flash-good"); void zone.offsetWidth; zone.classList.add("flash-good");
+    card.style.transition = "transform .3s ease, opacity .3s ease";
+    card.style.transform = `translate(calc(-50% + ${side==="C"?-420:420}px),-50%) rotate(${side==="C"?-18:18}deg)`;
+    card.style.opacity = "0";
+    st.idx++;
+    setTimeout(nextItem, 320);
+  } else {
+    card.style.transition = "transform .2s ease";
+    card.style.transform = "translate(-50%,-50%)";
+    card.classList.remove("shake"); void card.offsetWidth; card.classList.add("shake");
+    miss(it, `${it.t} — ${STYLE[it.a].toLowerCase()}`, it.why);
+    renderHud();
+    st.idx++;
+    setTimeout(()=>{ hideToast(); st.lives<=0 ? gameOver() : nextItem(); }, 2200);
+  }
+  renderHud();
+}
+function timeout(){
+  const r = ROUNDS[st.round];
+  locked = true;
+  const it = st.items[st.idx];
+  if(r.type==="sort"){
+    miss(it, `Час вийшов! ${it.t} — ${STYLE[it.a].toLowerCase()}`, it.why);
+    $("card").classList.remove("shake"); void $("card").offsetWidth; $("card").classList.add("shake");
+  } else {
+    [...$("opts").children].forEach(b=>{ b.disabled=true; if(b.dataset.v===it._correct) b.classList.add("ok"); });
+    miss(it, `Час вийшов! ${it.q} ${it._correct}`, it.why);
+  }
+  renderHud();
+  st.idx++;
+  setTimeout(()=>{ hideToast(); st.lives<=0 ? gameOver() : nextItem(); }, 2200);
+}
+
+/* drag */
+(function(){
+  const card = $("card");
+  let sx=0, dx=0, dragging=false;
+  card.addEventListener("pointerdown", e=>{
+    if(locked) return;
+    dragging=true; sx=e.clientX; dx=0;
+    card.setPointerCapture(e.pointerId);
+    card.style.transition="none";
+  });
+  card.addEventListener("pointermove", e=>{
+    if(!dragging) return;
+    dx = e.clientX - sx;
+    card.style.transform = `translate(calc(-50% + ${dx}px),-50%) rotate(${dx/18}deg)`;
+    $("zoneC").classList.toggle("hot", dx<-40);
+    $("zoneR").classList.toggle("hot", dx>40);
+  });
+  const end = ()=>{
+    if(!dragging) return;
+    dragging=false;
+    $("zoneC").classList.remove("hot"); $("zoneR").classList.remove("hot");
+    if(Math.abs(dx)>80){ answerSort(dx<0?"C":"R"); }
+    else { card.style.transition="transform .2s ease"; card.style.transform="translate(-50%,-50%)"; }
+  };
+  card.addEventListener("pointerup", end);
+  card.addEventListener("pointercancel", end);
+})();
+$("btnC").addEventListener("click", ()=>answerSort("C"));
+$("btnR").addEventListener("click", ()=>answerSort("R"));
+
+/* ---- quiz ---- */
+function answerQuiz(btn){
+  if(locked) return;
+  locked = true; cancelAnimationFrame(timerRAF);
+  const it = st.items[st.idx];
+  const btns = [...$("opts").children];
+  btns.forEach(b=>b.disabled=true);
+  const rect = btn.getBoundingClientRect();
+  if(btn.dataset.v===it._correct){
+    btn.classList.add("ok");
+    award(rect.left+rect.width/2, rect.top);
+    st.idx++;
+    renderHud();
+    setTimeout(nextItem, 700);
+  } else {
+    btn.classList.add("bad");
+    btns.find(b=>b.dataset.v===it._correct).classList.add("ok");
+    miss(it, `${it.q} ${it._correct}`, it.why);
+    renderHud();
+    st.idx++;
+    setTimeout(()=>{ hideToast(); st.lives<=0 ? gameOver() : nextItem(); }, 2200);
+  }
+}
+
+document.addEventListener("keydown", e=>{
+  if($("game").classList.contains("hidden")) return;
+  const r = ROUNDS[st.round];
+  if(r.type==="sort"){
+    if(e.key==="ArrowLeft"){ e.preventDefault(); answerSort("C"); }
+    if(e.key==="ArrowRight"){ e.preventDefault(); answerSort("R"); }
+  } else {
+    const n = parseInt(e.key,10);
+    if(n>=1 && n<=4){ const b=$("opts").children[n-1]; if(b) answerQuiz(b); }
+  }
+});
+
+/* ---- flow ---- */
+function endRound(){
+  cancelAnimationFrame(timerRAF);
+  st.round++;
+  if(st.round >= ROUNDS.length){ finish(true); return; }
+  const next = ROUNDS[st.round];
+  $("interTitle").textContent = `Раунд ${st.round} пройдено!`;
+  const tips = [
+    "Тепер — конкретні твори з програми НМТ. Підказка: архітектура й скульптура тут класицистичні, література й живопис — романтичні.",
+    "Фінал! Тепер треба знати авторів і місця. Пам’ятай: Камерон — Батурин, Беретті — Київ, Мартос — Одеса."
+  ];
+  $("interText").textContent = `Рахунок: ${st.score.toLocaleString("uk-UA")}. ${tips[st.round-1]}`;
+  $("interBtn").textContent = `Почати раунд «${next.name}»`;
+  show("inter");
+  $("interBtn").focus();
+}
+function gameOver(){ finish(false); }
+function finish(completed){
+  cancelAnimationFrame(timerRAF);
+  hideToast();
+  const pct = st.total ? st.correct/st.total : 0;
+  const stars = !completed ? (pct>0.5?1:0) : pct>=0.95 ? 3 : pct>=0.75 ? 2 : 1;
+  $("stars").innerHTML = [0,1,2].map(i=>`<span class="${i<stars?'':'off'}">★</span>`).join("");
+  const best = getBest();
+  const record = st.score > best;
+  if(record) setBest(st.score);
+  $("endTitle").textContent = !completed ? "Життя закінчились" : stars===3 ? "Ти готовий до НМТ!" : stars===2 ? "Майже ідеально!" : "Непогано, але є що підтягнути";
+  $("endScore").textContent = st.score.toLocaleString("uk-UA");
+  $("endText").textContent = `Правильних відповідей: ${st.correct} з ${st.total}.` + (record ? " Це новий рекорд!" : best ? ` Рекорд: ${best.toLocaleString("uk-UA")}.` : "");
+  const rv = $("review");
+  rv.innerHTML = "";
+  if(st.mistakes.length){
+    const h = document.createElement("li");
+    h.style.cssText="border:0;background:none;padding:0";
+    h.innerHTML = "<h3>Повтори:</h3>";
+    rv.appendChild(h);
+    st.mistakes.forEach(m=>{
+      const li = document.createElement("li");
+      const b = document.createElement("b"); b.textContent = m.t;
+      const s = document.createElement("span"); s.textContent = m.why;
+      li.append(b,s); rv.appendChild(li);
+    });
+  }
+  show("end");
+  $("againBtn").focus();
+}
+
+let toastT=null;
+function toast(html){ const t=$("toast"); t.innerHTML=html; t.classList.remove("hidden"); clearTimeout(toastT); toastT=setTimeout(hideToast,2600); }
+function hideToast(){ $("toast").classList.add("hidden"); }
+
+$("startBtn").addEventListener("click", newGame);
+$("interBtn").addEventListener("click", startRound);
+$("againBtn").addEventListener("click", newGame);
+</script>
+</body>
+</html>
